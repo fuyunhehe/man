@@ -4,3 +4,6 @@ sudo pip install shadowsocks
 sudo dnf install shadowsocks-libev.x86_64
 sudo dnf install perl-CPAN.noarch
 sudo cpan Net::Shadowsocks
+
+验证：
+curl 'https://www.google.com.hk' --socks5 127.0.0.1:1080
