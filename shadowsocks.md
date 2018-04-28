@@ -1,6 +1,16 @@
+### 服务端
+
+```shell
+wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh
+chmod +x shadowsocks-all.sh
+./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
+```
+
+
+
 ### 客户端
 
-```powershell
+```shell
 # 配置 shadowsocks源
 sudo curl -k 'https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo' > /etc/yum.repo.d/shadowsocks.repo
 
