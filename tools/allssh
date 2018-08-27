@@ -1,0 +1,89 @@
+#!/bin/sh
+
+#*******************************************************************
+#    AUTHOR: hanyugang
+#    DATE:2008-10-09
+#******************************************************************/
+
+if [ -t 1 ]; then
+	bConsole=1
+	blue_yellow="\033[1;33;44m"
+	off_color="\033[0m"
+	red_warning="\033[5;31;46m"
+	white_gray="\033[1;30;47m"
+fi
+
+usage()
+{
+	MYSELF=$(basename $0)
+	echo "USAGE: $MYSELF -f host_list_filename [-u user] [-i no] [-H] [-v] [ssh option] [cmd]"
+	exit 1
+}
+
+LISTNO=0
+PROTOCOL=2
+CMD='ssh -oStrictHostKeyChecking=no'
+##sudo=`which sudo`
+while getopts :vHi:f:u:1246CqTtc:l:o:p: i; do
+	case $i in
+	v)	if [ $bConsole ]; then
+			[ $BASH ] && export PS4='+[line $LINENO] '
+			set -x
+		fi
+		;;
+	H)	bShowList=1
+		;;
+	i)	expr $OPTARG + 10 > /dev/null 2>&1 || usage
+		LISTNO=$OPTARG
+		;;
+	f)	[ -s $OPTARG ] || usage
+		LIST=$(cat $OPTARG)
+		;;
+	u)	##id -u $OPTARG > /dev/null 2>&1 || usage
+		##CMD="$sudo -u $OPTARG $CMD"
+		USER=${OPTARG}
+		;;
+    1|2)
+        PROTOCOL=${i}
+        ;;
+    4|6|C|q|T|t)
+        CMD="$CMD -${i}"
+        ;;
+    c|l|o|p)
+        CMD="$CMD -${i}${OPTARG}"
+        ;;
+	*)	usage
+		;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+[ "$LIST" ] || usage
+
+if [ $bShowList ]; then
+	count=1
+	for HOST in $LIST ; do
+		if [ $LISTNO = $count -o $LISTNO = 0 ]; then
+			echo $count ${HOST##*:}
+		fi
+		count=$(($count + 1))
+	done
+	exit 0
+fi
+
+count=1
+for HOST in $LIST ; do
+	HOST=${HOST##*:}
+	if [ ! -z $USER ]; then
+		USER_HOST=$HOST
+	else
+		USER_HOST="${USER}@${HOST}"
+	fi
+
+	if [ $LISTNO = $count -o $LISTNO = 0 ]; then
+		echo -e "${blue_yellow}$count${off_color} >>>>>>>>>>Machine ${blue_yellow}${HOST}${off_color} Doing............<<<<<<<<<<<<<<<<"
+		$CMD -$PROTOCOL ${USER_HOST} "$@" || echo -e "allssh cmd error"
+	fi
+	count=$(($count + 1))
+done
+
