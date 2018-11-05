@@ -8,7 +8,7 @@ chmod +x shadowsocks-all.sh
 
 
 
-### 客户端
+### Linux客户端
 
 ```shell
 # 配置 shadowsocks源
