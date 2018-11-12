@@ -1,8 +1,8 @@
 <?php
 
 
-// var_dump(locationHref());
-// echo json_encode($_SERVER);
+var_dump(locationHref());
+echo json_encode($_SERVER);
 
 function locationHref(){
     return getHostInfo() . getUrl();
