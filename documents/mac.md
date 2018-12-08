@@ -2,10 +2,14 @@
 
 - [设置](#设置)
     - [触控板](#触控板)
+    - [键盘映射](#键盘映射)
 - [快捷键](#快捷键)
     - [app](#app)
     - [terminal](#terminal)
     - [vim](#vim)
+- [Tips](#tips)
+    - [触发角](#触发角)
+
 
 # 设置
 
@@ -21,6 +25,18 @@
 `系统偏好设置－》辅助功能－》鼠标与触控板选项－》触控板选项－》启动拖移－》三指拖移`
 启用之后，若需要查看所有程序或当前程序所有实例，可使用快捷键操作`ctrl + 上/下方向键`
 
+## 键盘映射
+
+外置机械键盘通常是windows键位布局，windows与mac键位映射关系如：
+
+| windows | mac          |
+| ------- | ------------ |
+| win     | ⌘（command） |
+| alt     | ⌥（option）  |
+| ctrl    | ⌃（control） |
+| shift   | ⇧（shift）   |
+
+>可通过`设置－》键盘－》修饰键`进行更改
 
 [Menu](#menu)
 
@@ -28,13 +44,31 @@
 
 ## app
 
-`command + q`退出当前程序
-`command + w`关闭当前标签页
-`command + s`保存当前标签页
-`command + t`新开标签页(多数app)
+### 切换
 
+`command + tab`应用程序间切换
+`command + ~`应用程序的窗口切换
+
+### 通用
+
+`command + q`退出程序
+`command + w`关闭标签页
+`command + n`新建窗口
+`command + t`新开标签页(多数app)
+`command + h`隐藏窗口
+`command + s`保存文件
+`command + z`回退文件
+`command + o`打开文件
+`command + c`复制
+`command + v`粘贴
 `ctrl + 方向键上`查看所有程序
 `ctrl + 方向键下`查看当前程序所有窗口
+`command + option + esc`强制退出程序(卡死的时候非常有效)
+
+### 截屏
+
+`command + shift + 4`再按space，截屏捕捉单个窗口
+`command + shift + 3`截取全屏
 
 ## 文本框
 `command + 方向键`光标移至最上/下/左/右(如：sublime、浏览器地址栏等)
@@ -51,5 +85,21 @@
 `y + y`复制当前行
 `p`粘贴
 `d + number + 上下方向键`向上／下删除n行
+
+[Menu](#menu)
+
+# Tips
+
+## 触发角
+
+>将鼠标移到四个角落，可以快速启用不同的系统功能。
+能选择配合按键触发，比如按住 Command 同时移到右下角 来显示桌面等
+
+启用方式:
+`设置－》桌面保护程序－》屏幕保护程序－》触发角`
+
+## 软件
+
+- CheatSheet:一键显示所有快捷键
 
 [Menu](#menu)
