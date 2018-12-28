@@ -1,6 +1,7 @@
 # Menu
 
 - [DNS配置](#DNS配置)
+- [网络端口占用](#网络端口占用)
 
 ### DNS配置
 
@@ -43,3 +44,13 @@ nameserver 219.141.136.10
 ```
 
 [Top](#Menu)
+
+### 端口占用
+
+```shell
+# 第一种
+netstat -ntlp
+
+# 第二种
+lsof -i tcp:80
+```
