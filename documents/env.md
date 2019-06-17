@@ -1,13 +1,15 @@
 # Menu
 
 - [bash](#bash)
-    - [.bashrc](#.bashrc)
+    + [.bashrc](#.bashrc)
 - [vim](#vim)
-    - [.vimrc](#.vimrc)
+    + [.vimrc](#.vimrc)
+- [系统时间](#系统时间)
+    + [网络较准时间](#网络较准时间)
 
-# bash
+## bash
 
-## .bashrc
+### .bashrc
 
 ```shell
 # svn 编辑器
@@ -27,9 +29,9 @@ export HISTSIZE=100000
 export PS1="\[\e[32m\]\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\W\[\e[m\]\[\e[32m\]\[\e[m\]\\$ "
 ```
 
-# vim
+## vim
 
-## .vimrc
+### .vimrc
 
 ```shell
 set tabstop=4
@@ -45,3 +47,12 @@ set nu "显示行号
 "set showmatch "设置匹配模式，类似当输入一个左括号时会匹配相应的右括号
 ```
 
+## 系统参数
+
+### 网络较准时间
+
+`sudo ntpdate -u asia.pool.ntp.org`
+
+### 字符集
+
+`sudo locale-gen zh_CN.utf8`

@@ -2,6 +2,7 @@
 
 - [DNS配置](#DNS配置)
 - [网络端口占用](#网络端口占用)
+- [固定IP](#固定IP)
 
 ### DNS配置
 
@@ -54,3 +55,68 @@ netstat -ntlp
 # 第二种
 lsof -i tcp:80
 ```
+
+### 固定IP
+
+使用VBox创建虚拟机后，希望虚拟机持有固定IP地址的设置方法
+
+1. 虚拟机创建完成之后，Vbox界面点击`设置->网络`，选中桥接模式
+2. 使用Windows主机cmd，输入ipconfig，查看主机网络的网关、掩码信息，如：
+```
+以太网适配器 本地连接:
+
+   连接特定的 DNS 后缀 . . . . . . . :
+   本地链接 IPv6 地址. . . . . . . . : fe80::c8c:5309:365a:ec71%20
+   IPv4 地址 . . . . . . . . . . . . : 192.168.1.32
+   子网掩码  . . . . . . . . . . . . : 255.255.254.0
+   默认网关. . . . . . . . . . . . . : 192.168.0.1
+```
+
+3. 虚拟机中使用`ip a`命令查看网络使用的网卡信息，如：
+```
+2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:d7:f6:77 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.137/23 brd 192.168.1.255 scope global noprefixroute enp0s8
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2266:fe92:91c1:97cd/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+4. 编辑`/etc/sysconfig/network-scripts/ifcfg-enp0s3`文件，文件内容如下:
+```
+TYPE="Ethernet"
+BOOTPROTO="dhcp"
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="enp0s3"
+UUID="b2d4feea-49e4-406b-8e36-da6c32c80ebc"
+DEVICE="enp0s3"
+ONBOOT="false"
+```
+
+需要修改如下几个字段值:
+```shell
+# 修改内容
+BOOTPROTO="static"
+ONBOOT="true"
+# 新增内容
+IPADDR="192.168.1.137"
+NETMASK="255.255.254.0"
+GATEWAY="192.168.0.1"
+# 若第3步查看网卡名不是enp0s3，则需要修改以下内容，UUID重新生成
+NAME="enp0s8"
+UUID="2c33d515-5f52-46f5-b2e8-ccdb478c37be"
+DEVICE="enp0s8"
+```
+
+5. 重启虚拟机或网络服务
+```shell
+sudo systemctl restart network
+sudo systemctl reboot
+```
+
