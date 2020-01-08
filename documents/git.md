@@ -12,5 +12,9 @@ git remote prune origin
 
 # 删除远端分支
 git push origin -d xxx
+
+# 删除tag
+git tag -d <tagname> # 删除本地tag
+git push origin :refs/tags/<tagname> # 这是删除远程tag的方法，推送一个空tag到远程tag
 ```
 
