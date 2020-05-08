@@ -33,7 +33,7 @@ export PS1="\[\e[32m\]\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\
 
 ### .vimrc
 
-```shell
+```.vimrc
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
