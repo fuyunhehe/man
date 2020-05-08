@@ -27,6 +27,11 @@ export HISTSIZE=100000
 #export PS1="\[\e[32m\]\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]\[\e[m\]\\$ "
 # 显示短路径
 export PS1="\[\e[32m\]\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\W\[\e[m\]\[\e[32m\]\[\e[m\]\\$ "
+
+# 修改终端ls时的配色显示
+# 参考：https://www.zhihu.com/question/318045233/answer/636356772
+export CLICOLOR=1
+export LSCOLORS=ExGxFxdaCxDaDahbadeche
 ```
 
 ## vim
