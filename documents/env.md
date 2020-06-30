@@ -62,3 +62,16 @@ syntax on "语法高亮显示
 ### 字符集
 
 `sudo locale-gen zh_CN.utf8`
+
+## golang
+### go mod
+
+```shell
+# 设置使用代理
+GOPROXY=https://goproxy.io 
+# 设置不使用代理
+# GOPROXY=direct
+# 设置不校验hash
+GOSUMDB=off
+export GOPROXY
+export GOSUMDB
